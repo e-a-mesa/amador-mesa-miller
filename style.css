@@ -8,31 +8,38 @@
 body, html {
     height: 100%;
     font-family: 'Lato', sans-serif;
-    overflow: hidden; 
+    overflow: hidden; /* Prevents scrolling on this single page */
 }
 
 .hero {
+    /* Matches your file exactly */
     background-image: url('Hf-background.png');
-    background-position: center;
+    
+    /* THE CROP: Anchors 20% from the left side */
+    background-position: 20% center;
+    
     background-repeat: no-repeat;
     background-size: cover;
+    
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    
     background-color: rgba(0,0,0,0.3);
     background-blend-mode: overlay;
+    color: white;
 }
 
 .content {
-    color: white; 
-    padding: 20px;
     width: 100%;
-    max-width: 1400px; /* Allowed it to be wider so 1 line fits easily */
+    max-width: 1400px;
+    padding: 20px;
     animation: fadeIn 2s ease-in;
 }
 
+/* 1. The Wedding of */
 .pre-header {
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -41,41 +48,38 @@ body, html {
     opacity: 0.9;
 }
 
-/* --- THE NAMES UPDATE --- */
+/* 2. RACHEL & ERNESTO */
 .names {
     font-family: 'Quattrocento', serif;
-    font-size: 5rem; /* Big Size */
+    font-size: 5rem;
     line-height: 1.1;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 10px;
     
-    /* This Flexbox logic controls the 1 line vs 3 lines */
+    /* Desktop: One Line */
     display: flex;
     justify-content: center;
-    gap: 30px; /* Space between RACHEL - & - ERNESTO */
-    white-space: nowrap;
+    gap: 30px;
+    white-space: nowrap; 
 }
 
-.names span {
-    display: inline-block;
-}
-
-/* --- THE DATE --- */
+/* 3. SEPTEMBER 26, 2026 */
 .date {
     font-family: 'Quattrocento', serif;
-    font-size: 3.5rem; /* Big Size */
+    font-size: 3.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-top: 5px;
 }
 
+/* 4. The Break */
 .spacer {
     height: 150px; 
 }
 
-/* Venue & Location */
+/* 5 & 6. VENUE & LOCATION */
 .venue, .location {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
@@ -89,6 +93,7 @@ body, html {
     margin-bottom: 40px; 
 }
 
+/* 7. Construction Box */
 .construction-msg {
     border: 1px solid rgba(255,255,255,0.6);
     padding: 15px 30px;
@@ -112,42 +117,34 @@ body, html {
     opacity: 0.9;
 }
 
+/* Animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE LOGIC --- */
+/* --- MOBILE & TABLET TWEAKS --- */
 
-/* If screen is smaller than 1200px (Laptops/Tablets/Phones), switch to 3 lines */
-@media (max-width: 1200px) {
+/* Force the 3-line break sooner (Tablet size and below) */
+@media (max-width: 1100px) {
     .names {
-        flex-direction: column; /* Stacks them vertically */
-        gap: 10px; /* Less space between lines when stacked */
-        font-size: 4rem; /* Slightly smaller to fit vertical look */
+        flex-direction: column; /* Stacks RACHEL / & / ERNESTO */
+        gap: 10px;
+        font-size: 4rem; 
     }
     
     .names .amp {
-        font-size: 3rem; /* Make the '&' slightly smaller for style */
+        font-size: 3rem;
         opacity: 0.8;
         margin: 5px 0;
     }
 
-    .date {
-        font-size: 2.5rem;
-    }
-    
-    .spacer {
-        height: 80px;
-    }
+    .date { font-size: 2.5rem; }
+    .spacer { height: 80px; }
 }
 
-/* Extra small screens (Phones) */
+/* Phones */
 @media (max-width: 600px) {
-    .names {
-        font-size: 3rem; 
-    }
-    .date {
-        font-size: 1.8rem;
-    }
+    .names { font-size: 3rem; }
+    .date { font-size: 1.8rem; }
 }
