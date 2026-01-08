@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <div class="hero">
+    <header id="home" class="hero-poster">
         <div class="content">
             <p class="pre-header">The Wedding of</p>
             
@@ -19,20 +19,78 @@
                 <span>ERNESTO</span>
             </h1>
             
-            <p class="date">SEPTEMBER 26, 2026</p>
+            <p class="date">SEPT&nbsp;&nbsp;26,&nbsp;&nbsp;2026</p>
             
             <div class="spacer"></div>
             
             <p class="venue">HILL FARM INN</p>
-            <p class="location">SUNDERLAND, VERMONT</p>
+            <p class="location-text">SUNDERLAND, VERMONT</p>
             
-            <div class="construction-msg">
-                <p>WEBSITE COMING SOON</p>
-                <p class="sub-msg">Please check back later for details.</p>
+            <div class="scroll-indicator">
+                <p>DETAILS</p>
+                <span>&darr;</span>
             </div>
         </div>
-    </div>
+    </header>
 
+    <nav class="navbar" id="navbar">
+        <div class="logo">R & E</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#accommodations">Stay</a></li>
+            <li><a href="#travel">Travel</a></li>
+        </ul>
+    </nav>
+
+    <section id="location" class="container">
+        <span class="section-subtitle">Celebrate with us</span>
+        <h2>Our Vermont Wedding</h2>
+        
+        <div class="text-block">
+            <p class="desc">Celebrate with us in the mountains of Southern Vermont, Rachel's favorite place in the world.</p>
+            <p>Hill Farm is located in Sunderland, a historic region defined by the winding Battenkill River and the Green Mountains.</p>
+        </div>
+    </section>
+    
+    <section id="accommodations" class="container bg-offwhite">
+        <span class="section-subtitle">Stay With Us</span>
+        <h2>Accommodations</h2>
+        
+        <div class="hotel-block">
+            <h3>Hill Farm Inn</h3>
+            <p class="desc">Hill Farm is a historic resort nestled in the mountains where rustic charm meets modern luxury.</p>
+            <p>We have reserved the entire property for our guests. Availability is limited.</p>
+            <a href="https://www.hillfarminn.com/" target="_blank" class="btn-outline">BOOK YOUR ROOM</a>
+        </div>
+
+        <div class="overflow-block">
+            <h4>Additional Options</h4>
+            <p>Available rooms at Hill Farm Inn are limited. Additional options in nearby Manchester include:</p>
+            <p class="small-text">The Equinox Resort &bull; Kimpton Taconic &bull; Hampton Inn Manchester &bull; The Inn at Manchester &bull; The Palmer House Resort</p>
+        </div>
+    </section>
+
+    <section id="travel" class="container">
+        <span class="section-subtitle">The Journey</span>
+        <h2>Getting Here</h2>
+        <div class="travel-grid">
+            <div class="travel-col">
+                <h3>By Air</h3>
+                <p><strong>Albany (ALB)</strong><br>1 Hour Drive (Recommended)</p>
+                <p><strong>Burlington (BTV)</strong><br>2 Hours Drive</p>
+            </div>
+            <div class="travel-col">
+                <h3>By Car</h3>
+                <p>Hill Farm Inn is located at 458 Hill Farm Rd, Sunderland, VT. Enjoy the scenic drive through the Green Mountains.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Rachel & Ernesto &bull; 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
-
