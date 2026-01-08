@@ -6,27 +6,24 @@
 }
 
 body, html {
-    height: 100%;
+    min-height: 100%;
     font-family: 'Lato', sans-serif;
-    overflow: hidden; /* Prevents scrolling on this single page */
+    color: #1a1a1a;
+    scroll-behavior: smooth; 
+    overflow-x: hidden; 
 }
 
-.hero {
-    /* Matches your file exactly */
+/* --- PART 1: THE LANDING POSTER --- */
+.hero-poster {
     background-image: url('Hf-background.png');
-    
-    /* THE CROP: Anchors 20% from the left side */
-    background-position: 20% center;
-    
+    background-position: 20% center; 
     background-repeat: no-repeat;
     background-size: cover;
-    
-    height: 100%;
+    height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    
     background-color: rgba(0,0,0,0.3);
     background-blend-mode: overlay;
     color: white;
@@ -35,11 +32,10 @@ body, html {
 .content {
     width: 100%;
     max-width: 1400px;
-    padding: 20px;
     animation: fadeIn 2s ease-in;
+    padding: 20px;
 }
 
-/* 1. The Wedding of */
 .pre-header {
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -48,7 +44,6 @@ body, html {
     opacity: 0.9;
 }
 
-/* 2. RACHEL & ERNESTO */
 .names {
     font-family: 'Quattrocento', serif;
     font-size: 5rem;
@@ -57,15 +52,12 @@ body, html {
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 10px;
-    
-    /* Desktop: One Line */
     display: flex;
     justify-content: center;
     gap: 30px;
     white-space: nowrap; 
 }
 
-/* 3. SEPTEMBER 26, 2026 */
 .date {
     font-family: 'Quattrocento', serif;
     font-size: 3.5rem;
@@ -74,77 +66,200 @@ body, html {
     margin-top: 5px;
 }
 
-/* 4. The Break */
-.spacer {
-    height: 150px; 
-}
+.spacer { height: 150px; }
 
-/* 5 & 6. VENUE & LOCATION */
-.venue, .location {
+.venue, .location-text {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 4px;
     line-height: 1.4;
 }
 
-.location {
-    margin-bottom: 40px; 
-}
+.location-text { margin-bottom: 40px; }
 
-/* 7. Construction Box */
-.construction-msg {
-    border: 1px solid rgba(255,255,255,0.6);
-    padding: 15px 30px;
-    display: inline-block;
-    backdrop-filter: blur(5px);
-}
-
-.construction-msg p {
+.scroll-indicator {
+    margin-top: 50px;
     font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    opacity: 0.8;
+    animation: bounce 2s infinite;
+    cursor: default;
+}
+.scroll-indicator span { display: block; font-size: 1.5rem; }
+
+/* --- PART 2: THE NAVBAR --- */
+.navbar {
+    width: 100%;
+    background: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    z-index: 1000;
+    transition: all 0.3s ease; /* Makes the stick effect smooth */
+}
+
+/* THE FIX: JavaScript will add this class when you scroll down */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adds a nice shadow when sticky */
+}
+
+/* This adds padding to the body so the content doesn't jump when nav sticks */
+.sticky-padding {
+    padding-top: 80px; 
+}
+
+.logo {
+    font-family: 'Quattrocento', serif;
+    font-size: 1.5rem;
+    color: #000;
     font-weight: 700;
 }
 
-.sub-msg {
-    display: block;
-    margin-top: 5px;
-    font-size: 0.7rem !important;
-    font-weight: 400 !important;
-    font-style: italic;
-    opacity: 0.9;
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
 }
 
-/* Animation */
+.nav-links a {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+}
+.nav-links a:hover { color: #888; }
+
+/* --- PART 3: MAIN SECTIONS --- */
+.container {
+    padding: 100px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.bg-offwhite { background-color: #f9f9f7; }
+
+h2 {
+    font-family: 'Quattrocento', serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-family: 'Quattrocento', serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+h4 {
+    font-family: 'Quattrocento', serif;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-subtitle {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.text-block, .hotel-block {
+    margin-bottom: 40px;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+.desc { margin-bottom: 20px; font-weight: 400; }
+.small-text { font-size: 0.9rem; margin-top: 10px; opacity: 0.8; }
+
+.overflow-block {
+    margin-top: 60px;
+    border-top: 1px solid #ddd;
+    padding-top: 40px;
+}
+
+.travel-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+}
+.travel-col { flex: 1; text-align: left; }
+.travel-col p { margin-bottom: 15px; }
+
+.btn-outline {
+    display: inline-block;
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+    padding: 15px 40px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+}
+.btn-outline:hover { background: #1a1a1a; color: #fff; }
+
+footer {
+    padding: 40px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+    background: #fafafa;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
 
-/* --- MOBILE & TABLET TWEAKS --- */
-
-/* Force the 3-line break sooner (Tablet size and below) */
+/* --- MOBILE TWEAKS --- */
 @media (max-width: 1100px) {
     .names {
-        flex-direction: column; /* Stacks RACHEL / & / ERNESTO */
+        flex-direction: column; 
         gap: 10px;
         font-size: 4rem; 
     }
-    
-    .names .amp {
-        font-size: 3rem;
-        opacity: 0.8;
-        margin: 5px 0;
-    }
-
     .date { font-size: 2.5rem; }
     .spacer { height: 80px; }
 }
 
-/* Phones */
-@media (max-width: 600px) {
-    .names { font-size: 3rem; }
-    .date { font-size: 1.8rem; }
+@media (max-width: 768px) {
+    .names { font-size: 3.5rem; }
+    
+    .travel-grid { flex-direction: column; text-align: center; }
+    .travel-col { text-align: center; }
+
+    .navbar {
+        flex-direction: column; 
+        padding: 15px 20px;
+    }
+    .logo { margin-bottom: 15px; }
+    .nav-links {
+        display: flex; 
+        gap: 20px;
+        font-size: 0.7rem; 
+        padding: 0;
+    }
 }
