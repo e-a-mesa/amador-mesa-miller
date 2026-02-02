@@ -12,15 +12,15 @@ body, html {
     font-family: 'Lato', sans-serif;
     color: #1a1a1a;
     scroll-behavior: smooth;
-    overflow-x: hidden; /* Prevents horizontal scroll on mobile */
+    overflow-x: hidden;
 }
 
 /* Fix for anchor links landing too low due to sticky nav */
 section {
-    scroll-margin-top: 80px;
+    scroll-margin-top: 140px; /* Accounts for taller mobile nav */
 }
 
-/* Make images and inputs fluid */
+/* Fluid Layout */
 img, input, textarea, button {
     max-width: 100%;
 }
@@ -34,7 +34,7 @@ img, input, textarea, button {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh; 
-    min-height: 550px; /* Fix for mobile landscape */
+    min-height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,14 +74,27 @@ img, input, textarea, button {
     white-space: nowrap; 
 }
 
+/* --- UPDATED DATE STYLING --- */
 .date {
     font-family: 'Quattrocento', serif;
     font-size: 3.3rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-top: 5px;
+    
+    /* Logic to allow wrapping on small screens */
+    flex-wrap: wrap; 
+    gap: 0 30px; /* 30px gap horizontally */
+    line-height: 1.2;
+}
+
+/* Keeps "September 26" glued together */
+.date span {
+    white-space: nowrap; 
+    display: inline-block;
 }
 
 .spacer { height: 120px; }
@@ -128,7 +141,7 @@ img, input, textarea, button {
 }
 
 /* =========================================
-   3. NAVBAR
+   3. NAVBAR (Compact Mobile, No Hamburger)
    ========================================= */
 .navbar {
     width: 100%;
@@ -142,7 +155,7 @@ img, input, textarea, button {
     transition: all 0.3s ease;
 }
 
-/* The "Locked" state (Toggled by JS) */
+/* Sticky State */
 .navbar.fixed-mode {
     position: fixed;
     top: 0;
@@ -208,7 +221,7 @@ img, input, textarea, button {
 }
 
 /* =========================================
-   4. LAYOUT & SECTIONS (Updated)
+   4. LAYOUT & SECTIONS
    ========================================= */
 /* The parent section handles the background color and vertical padding */
 .section-pad {
@@ -231,7 +244,6 @@ img, input, textarea, button {
     background-color: #2E5E4E; 
     color: #fff;
 }
-/* Adjustments for green background text */
 .bg-vibrant-green .section-subtitle { color: #a2dcd0; }
 .bg-vibrant-green .desc { color: #fff; }
 .bg-vibrant-green h2 { border-color: #fff; }
@@ -295,7 +307,7 @@ h4 {
     padding: 30px 20px;
     border: 1px solid #ddd;
     transition: transform 0.3s ease;
-    background: #fff; /* Ensure it pops on grey backgrounds if needed */
+    background: #fff;
 }
 
 .schedule-day:hover {
@@ -401,27 +413,26 @@ h4 {
 .btn-outline:hover { background: #1a1a1a; color: #fff; }
 
 /* =========================================
-   FAQ SECTION STYLES
+   6. FAQ SECTION STYLES
    ========================================= */
-
 .faq-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 40px;
     margin-top: 40px;
-    text-align: left; /* Keep Q&A left aligned for readability */
+    text-align: left;
 }
 
 .faq-item {
-    flex: 1 1 40%; /* Each item takes roughly 40% width */
+    flex: 1 1 40%;
     min-width: 300px;
 }
 
 .faq-item h4 {
     margin-bottom: 15px;
     font-size: 1.1rem;
-    border-bottom: 1px solid #ddd; /* Subtle line under question */
+    border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
     color: #1a1a1a;
 }
@@ -432,22 +443,8 @@ h4 {
     color: #555;
 }
 
-/* Mobile Tweak for FAQ */
-@media (max-width: 768px) {
-    .faq-grid {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .faq-item {
-        width: 100%;
-        text-align: center; /* Center text on mobile */
-    }
-}
-
-
 /* =========================================
-   6. RSVP STYLES (Updated UI)
+   7. RSVP STYLES
    ========================================= */
 .rsvp-container {
     max-width: 800px;
@@ -464,7 +461,7 @@ h4 {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Button Group (Yes/No) */
+/* Button Group */
 .button-group {
     display: flex;
     justify-content: center;
@@ -490,7 +487,7 @@ h4 {
     color: #2E5E4E;
 }
 
-/* Guest Count Circles -> Now Squares */
+/* Guest Count Squares */
 .guest-count-group {
     display: flex;
     justify-content: center;
@@ -508,7 +505,7 @@ h4 {
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    border-radius: 4px; /* Slight rounded corner */
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -518,7 +515,6 @@ h4 {
     background: white;
     color: #2E5E4E;
     transform: translateY(-3px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 /* Form Styling */
@@ -554,7 +550,6 @@ h4 {
     margin-bottom: 0;
 }
 
-/* Age Radio Group */
 .age-group {
     display: flex;
     gap: 5px;
@@ -580,7 +575,7 @@ h4 {
     font-weight: bold;
 }
 
-/* Submit Button (Updated) */
+/* Submit Button */
 .btn-submit {
     display: inline-block;
     background: transparent;
@@ -591,7 +586,7 @@ h4 {
     font-size: 0.9rem;
     letter-spacing: 2px;
     margin-top: 20px;
-    cursor: pointer; /* Shows pointer hand */
+    cursor: pointer;
     transition: all 0.3s ease;
     min-width: 200px;
 }
@@ -607,7 +602,7 @@ h4 {
 }
 
 /* =========================================
-   7. FOOTER
+   8. FOOTER
    ========================================= */
 footer {
     padding: 40px;
@@ -619,7 +614,7 @@ footer {
 }
 
 /* =========================================
-   8. MOBILE RESPONSIVENESS
+   9. MOBILE RESPONSIVENESS
    ========================================= */
 
 /* Tablet & Smaller Desktop */
@@ -629,18 +624,52 @@ footer {
         gap: 10px;
         font-size: 4rem; 
     }
-    .date { font-size: 2.5rem; }
+    /* Date slightly smaller on tablet */
+    .date { font-size: 2.8rem; }
+    
     .spacer { height: 80px; }
 }
 
 /* Mobile Phones */
 @media (max-width: 768px) {
     
-    /* Layout Adjustments */
+    /* Navbar Optimization - Compact Stack */
+    .navbar {
+        flex-direction: column; 
+        padding: 10px 15px; /* Slim padding */
+        gap: 10px;
+    }
+    
+    .nav-left { 
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+    
+    /* Make the links row tighter */
+    .nav-links { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 15px; /* Tighter gap */
+        font-size: 0.7rem; /* Smaller text */
+        width: 100%;
+        padding-bottom: 5px;
+    }
+    
+    /* Section Layouts */
     .section-pad { padding: 60px 0; }
     
     .names { font-size: 3rem; }
-    .date { font-size: 1.8rem; }
+    
+    /* DATE WRAP LOGIC FOR MOBILE */
+    .date { 
+        font-size: 2rem; 
+        gap: 5px 0; /* Less gap horizontally if they wrap */
+        flex-direction: row; 
+    }
+    .date span {
+        width: auto; /* Allow them to flow naturally */
+    }
     
     .hero-buttons {
         flex-direction: column;
@@ -648,32 +677,17 @@ footer {
         gap: 15px;
     }
 
-    /* Navbar Mobile */
-    .navbar {
-        flex-direction: column; 
-        padding: 15px 20px;
-        gap: 15px;
-    }
-    
-    .nav-left { 
-        width: 100%;
-        justify-content: space-between;
-    }
-    
-    .nav-links { 
-        flex-wrap: wrap; 
-        justify-content: center; 
-        gap: 20px;
-        font-size: 0.75rem;
-    }
-
     /* Grids to stacks */
-    .schedule-grid, .travel-grid { 
+    .schedule-grid, .travel-grid, .faq-grid { 
         flex-direction: column; 
-        gap: 20px; 
+        gap: 30px; 
     }
     
-    .travel-col { text-align: center; }
+    .travel-col, .faq-item { 
+        text-align: center; 
+        width: 100%;
+    }
+    
     .divider-small { margin: 20px auto; }
 
     /* RSVP Mobile */
@@ -681,18 +695,13 @@ footer {
         flex-direction: column;
         align-items: stretch;
     }
-    
-    .guest-row input[type="text"] { width: 100%; }
-    
-    .age-group {
-        justify-content: space-between;
-    }
-    
+    .guest-row input[type="text"] { width: 100%; margin-bottom: 10px; }
+    .age-group { justify-content: space-between; }
     .btn-submit { width: 100%; }
 }
 
 /* =========================================
-   9. LANGUAGES
+   10. LANGUAGES
    ========================================= */
 .lang-es { display: none !important; }
 
@@ -701,4 +710,3 @@ body.spanish-mode .lang-en { display: none !important; }
 body.spanish-mode .lang-es { display: block !important; }
 body.spanish-mode li.lang-es { display: inline-block !important; }
 body.spanish-mode .btn-hotel.lang-es { display: inline-block !important; }
-
