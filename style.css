@@ -68,6 +68,7 @@ section {
     font-family: 'Quattrocento', serif;
     font-size: 3.3rem;
 	display: flex;
+	justify-content: center;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-top: 5px;
@@ -80,6 +81,7 @@ section {
     font-weight: 400;
     font-size: 1.4rem;
 	display:flex;
+	justify-content: center;
     text-transform: uppercase;
     letter-spacing: 4px;
     line-height: 1.8;
@@ -605,4 +607,5 @@ footer {
 body.spanish-mode .lang-en { display: none !important; }
 body.spanish-mode .lang-es { display: block !important; }
 body.spanish-mode li.lang-es { display: inline-block !important; }
+
 
