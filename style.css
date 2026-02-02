@@ -638,7 +638,7 @@ footer {
         
         /* CRITICAL FIXES FOR TOP SPACING: */
         align-items: flex-start; /* Align to top, don't try to center vertically */
-        padding-top: 100px;      /* Force 150px of space at the top */
+        padding-top: 90px;      /* Force 150px of space at the top */
         padding-bottom: 50px;    /* Space at the bottom */
     }
 
@@ -658,7 +658,7 @@ footer {
         font-size: 1.6rem; 
         gap: 5px 0; 
        flex-direction: column;
-        margin-top: 10px;
+        margin-top: 15px;
     }
     .date span { width: auto; }
     
@@ -667,10 +667,10 @@ footer {
 
     .location-text { 
         margin-bottom: 20px; 
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
-    .venue { font-size: 1.2rem; }
+    .venue { font-size: 1rem; }
 
     .hero-buttons {
         margin-top: 30px; 
@@ -678,6 +678,13 @@ footer {
         align-items: center;
         gap: 15px;
     }
+
+   .btn-hero {
+    padding: 12px 22px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem;
+    min-width: 110px;
+}
     
     /* 2. NAVBAR & SECTIONS */
     .navbar {
@@ -739,6 +746,7 @@ body.spanish-mode .lang-en { display: none !important; }
 body.spanish-mode .lang-es { display: block !important; }
 body.spanish-mode li.lang-es { display: inline-block !important; }
 body.spanish-mode .btn-hotel.lang-es { display: inline-block !important; }
+
 
 
 
