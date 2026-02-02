@@ -621,22 +621,65 @@ footer {
 @media (max-width: 1100px) {
     .names {
         flex-direction: column; 
-        gap: 10px;
+        gap: 5px;
         font-size: 4rem; 
     }
-    /* Date slightly smaller on tablet */
     .date { font-size: 2.8rem; }
-    
-    .spacer { height: 80px; }
+    .spacer { height: 60px; }
 }
 
-/* Mobile Phones */
+/* Mobile Phones (Landscape & Portrait) */
 @media (max-width: 768px) {
     
-    /* Navbar Optimization - Compact Stack */
+    /* 1. HERO SECTION ADJUSTMENTS */
+    .hero-poster {
+        /* Allow height to grow if content is too tall */
+        height: auto; 
+        min-height: 100vh;
+        padding-top: 100px; /* Extra padding top so names don't hit status bar */
+        padding-bottom: 40px;
+    }
+
+    .names { 
+        font-size: 2.5rem; /* Smaller names */
+        line-height: 1.1;
+    }
+    
+    .pre-header {
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    /* Tighter date wrapping */
+    .date { 
+        font-size: 1.5rem; 
+        gap: 5px 0; 
+        flex-direction: row; 
+        margin-top: 10px;
+    }
+    .date span { width: auto; }
+    
+    /* Drastically reduce the empty space */
+    .spacer { height: 20px; }
+
+    .location-text { 
+        margin-bottom: 20px; 
+        font-size: 1.1rem;
+    }
+    
+    .venue { font-size: 1.2rem; }
+
+    .hero-buttons {
+        margin-top: 30px; /* Reduced from 60px */
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    /* 2. NAVBAR & SECTIONS */
     .navbar {
         flex-direction: column; 
-        padding: 10px 15px; /* Slim padding */
+        padding: 10px 15px;
         gap: 10px;
     }
     
@@ -646,38 +689,18 @@ footer {
         margin-bottom: 5px;
     }
     
-    /* Make the links row tighter */
     .nav-links { 
         flex-wrap: wrap; 
         justify-content: center; 
-        gap: 15px; /* Tighter gap */
-        font-size: 0.7rem; /* Smaller text */
+        gap: 12px;
+        font-size: 0.7rem; 
         width: 100%;
         padding-bottom: 5px;
     }
     
-    /* Section Layouts */
-    .section-pad { padding: 60px 0; }
-    
-    .names { font-size: 3rem; }
-    
-    /* DATE WRAP LOGIC FOR MOBILE */
-    .date { 
-        font-size: 2rem; 
-        gap: 5px 0; /* Less gap horizontally if they wrap */
-        flex-direction: row; 
-    }
-    .date span {
-        width: auto; /* Allow them to flow naturally */
-    }
-    
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
+    .section-pad { padding: 50px 0; }
 
-    /* Grids to stacks */
+    /* 3. GRIDS TO STACKS */
     .schedule-grid, .travel-grid, .faq-grid { 
         flex-direction: column; 
         gap: 30px; 
@@ -690,7 +713,7 @@ footer {
     
     .divider-small { margin: 20px auto; }
 
-    /* RSVP Mobile */
+    /* 4. RSVP MOBILE */
     .guest-row {
         flex-direction: column;
         align-items: stretch;
@@ -699,7 +722,6 @@ footer {
     .age-group { justify-content: space-between; }
     .btn-submit { width: 100%; }
 }
-
 /* =========================================
    10. LANGUAGES
    ========================================= */
@@ -710,3 +732,4 @@ body.spanish-mode .lang-en { display: none !important; }
 body.spanish-mode .lang-es { display: block !important; }
 body.spanish-mode li.lang-es { display: inline-block !important; }
 body.spanish-mode .btn-hotel.lang-es { display: inline-block !important; }
+
