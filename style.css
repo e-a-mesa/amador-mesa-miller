@@ -634,10 +634,11 @@ footer {
     .hero-poster {
         height: auto;       /* Let it grow if text is long */
         min-height: 100vh;  /* Ensure it fills at least one screen */
+       background-position: 20% top;
         
         /* CRITICAL FIXES FOR TOP SPACING: */
         align-items: flex-start; /* Align to top, don't try to center vertically */
-        padding-top: 150px;      /* Force 150px of space at the top */
+        padding-top: 100px;      /* Force 150px of space at the top */
         padding-bottom: 50px;    /* Space at the bottom */
     }
 
@@ -656,7 +657,7 @@ footer {
     .date { 
         font-size: 1.6rem; 
         gap: 5px 0; 
-        flex-direction: row; 
+       flex-direction: column;
         margin-top: 10px;
     }
     .date span { width: auto; }
@@ -683,6 +684,10 @@ footer {
         flex-direction: column; 
         padding: 10px 15px;
         gap: 10px;
+    }
+
+   .logo {
+        font-size: 1.1rem;
     }
     
     .nav-left { 
@@ -734,5 +739,6 @@ body.spanish-mode .lang-en { display: none !important; }
 body.spanish-mode .lang-es { display: block !important; }
 body.spanish-mode li.lang-es { display: inline-block !important; }
 body.spanish-mode .btn-hotel.lang-es { display: inline-block !important; }
+
 
 
