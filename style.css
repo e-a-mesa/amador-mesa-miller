@@ -614,35 +614,37 @@ footer {
 }
 
 /* =========================================
-   9. MOBILE RESPONSIVENESS
+   9. MOBILE RESPONSIVENESS (Final Fix)
    ========================================= */
 
 /* Tablet & Smaller Desktop */
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
     .names {
-        flex-direction: column; 
-        gap: 5px;
         font-size: 4rem; 
+        gap: 15px;
     }
     .date { font-size: 2.8rem; }
     .spacer { height: 60px; }
 }
 
-/* Mobile Phones (Landscape & Portrait) */
-@media (max-width: 768px) {
+/* Mobile Phones & Vertical Tablets */
+@media (max-width: 900px) {
     
     /* 1. HERO SECTION ADJUSTMENTS */
     .hero-poster {
-        /* Allow height to grow if content is too tall */
-        height: auto; 
-        min-height: 100vh;
-        padding-top: 100px; /* Extra padding top so names don't hit status bar */
-        padding-bottom: 40px;
+        height: auto;       /* Let it grow if text is long */
+        min-height: 100vh;  /* Ensure it fills at least one screen */
+        
+        /* CRITICAL FIXES FOR TOP SPACING: */
+        align-items: flex-start; /* Align to top, don't try to center vertically */
+        padding-top: 150px;      /* Force 150px of space at the top */
+        padding-bottom: 50px;    /* Space at the bottom */
     }
 
     .names { 
-        font-size: 2.5rem; /* Smaller names */
+        font-size: 2.5rem; 
         line-height: 1.1;
+        flex-direction: column;
     }
     
     .pre-header {
@@ -652,14 +654,14 @@ footer {
 
     /* Tighter date wrapping */
     .date { 
-        font-size: 1.5rem; 
+        font-size: 1.6rem; 
         gap: 5px 0; 
         flex-direction: row; 
         margin-top: 10px;
     }
     .date span { width: auto; }
     
-    /* Drastically reduce the empty space */
+    /* Reduce spacer since we have padding now */
     .spacer { height: 20px; }
 
     .location-text { 
@@ -670,7 +672,7 @@ footer {
     .venue { font-size: 1.2rem; }
 
     .hero-buttons {
-        margin-top: 30px; /* Reduced from 60px */
+        margin-top: 30px; 
         flex-direction: column;
         align-items: center;
         gap: 15px;
@@ -693,7 +695,7 @@ footer {
         flex-wrap: wrap; 
         justify-content: center; 
         gap: 12px;
-        font-size: 0.7rem; 
+        font-size: 0.75rem; 
         width: 100%;
         padding-bottom: 5px;
     }
@@ -732,4 +734,5 @@ body.spanish-mode .lang-en { display: none !important; }
 body.spanish-mode .lang-es { display: block !important; }
 body.spanish-mode li.lang-es { display: inline-block !important; }
 body.spanish-mode .btn-hotel.lang-es { display: inline-block !important; }
+
 
