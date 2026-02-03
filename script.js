@@ -7,20 +7,52 @@ const langBtn = document.getElementById('langToggle');
 const btnEnterEn = document.getElementById('enterEn');
 const btnEnterEs = document.getElementById('enterEs');
 
-// --- SCROLL LOCK LOGIC ---
-const navOffset = navbar ? navbar.offsetTop : 0; 
+// --- NAVBAR REVEAL & PARALLAX LOGIC ---
+window.addEventListener('scroll', function() {
+    const bg = document.getElementById('global-bg');
+    const hero = document.querySelector('.hero-poster');
+    const navbar = document.getElementById('navbar');
+    
+    if (bg && hero) {
+        const scrollPosition = window.pageYOffset;
+        const heroHeight = hero.offsetHeight;
 
-if (navbar) {
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset >= navOffset) {
-            navbar.classList.add("fixed-mode");
-            document.body.style.paddingTop = navbar.offsetHeight + "px";
+        // 1. PARALLAX OPACITY LOGIC
+        let opacityValue = 1 - (scrollPosition / heroHeight);
+        if (opacityValue < 0.15) opacityValue = 0.15;
+        if (opacityValue > 1) opacityValue = 1;
+        bg.style.opacity = opacityValue;
+
+        // 2. NAVBAR REVEAL LOGIC
+        // "heroHeight - 100" means the menu slides down just before 
+        // you finish scrolling past the hero.
+        if (scrollPosition > (heroHeight - 100)) {
+            navbar.classList.add('visible');
         } else {
-            navbar.classList.remove("fixed-mode");
-            document.body.style.paddingTop = 0;
+            navbar.classList.remove('visible');
         }
-    });
-}
+    }
+});
+
+// --- PARALLAX FADE LOGIC (NEW) ---
+window.addEventListener('scroll', function() {
+    const bg = document.getElementById('global-bg');
+    const hero = document.querySelector('.hero-poster');
+    
+    if (bg && hero) {
+        const scrollPosition = window.pageYOffset;
+        const heroHeight = hero.offsetHeight;
+
+        // Calculate opacity: 1 - (scroll / height)
+        let opacityValue = 1 - (scrollPosition / heroHeight);
+
+        // Stop the fade at 0.15 (15% visibility) so it remains visible
+        if (opacityValue < 0.15) opacityValue = 0.15;
+        if (opacityValue > 1) opacityValue = 1;
+
+        bg.style.opacity = opacityValue;
+    }
+});
 
 // --- LANGUAGE LOGIC ---
 const storedLang = localStorage.getItem('weddingLang');
@@ -102,13 +134,14 @@ if (btnYes) {
     });
 }
 
-// 2. Generate Guest Rows
+// 2. Generate Guest Rows (Updated)
 window.generateGuests = function(count) { 
     if (!formYes || !containerGuests) return;
     
     formYes.classList.remove('hidden');
     containerGuests.innerHTML = '';
     
+    // Highlight the selected circle
     document.querySelectorAll('.btn-count').forEach(btn => btn.classList.remove('active'));
     if (window.event) {
         window.event.target.classList.add('active');
@@ -118,15 +151,22 @@ window.generateGuests = function(count) {
 
     for (let i = 1; i <= count; i++) {
         const rowHTML = `
-            <div class="guest-row" id="guest-row-${i}">
-                <input type="text" class="input-name input-field" placeholder="Guest ${i} Name / Nombre" required>
-                <div class="age-group">
-                    <label><input type="radio" name="guest_${i}_age" value="0-6"><span class="age-label">0-6</span></label>
-                    <label><input type="radio" name="guest_${i}_age" value="7-12"><span class="age-label">7-12</span></label>
-                    <label><input type="radio" name="guest_${i}_age" value="13-20"><span class="age-label">13-20</span></label>
-                    <label><input type="radio" name="guest_${i}_age" value="21+" checked><span class="age-label">21+</span></label>
+            <div class="guest-block">
+                <h5 class="guest-header">Guest ${i} / Invitado ${i}</h5>
+
+                <div class="guest-row" id="guest-row-${i}">
+                    <input type="text" class="input-name input-field" placeholder="Full Name / Nombre Completo" required>
+                    
+                    <p class="input-label">Age Group / Edad</p>
+                    <div class="age-group">
+                        <label><input type="radio" name="guest_${i}_age" value="0-6"><span class="age-label">0-6</span></label>
+                        <label><input type="radio" name="guest_${i}_age" value="7-12"><span class="age-label">7-12</span></label>
+                        <label><input type="radio" name="guest_${i}_age" value="13-20"><span class="age-label">13-20</span></label>
+                        <label><input type="radio" name="guest_${i}_age" value="21+" checked><span class="age-label">21+</span></label>
+                    </div>
+                    
+                    <input type="text" class="input-diet input-field" placeholder="Dietary Restrictions / Dieta (Optional)" style="margin-top: 15px;">
                 </div>
-                <input type="text" class="input-diet input-field" placeholder="Dietary Restrictions / Dieta" style="flex:1;">
             </div>
         `;
         containerGuests.insertAdjacentHTML('beforeend', rowHTML);
@@ -187,7 +227,7 @@ if (formYes) {
     });
 }
 
-// 5. SEND TO GOOGLE FUNCTION
+// 5. SEND TO GOOGLE FUNCTION (Enhanced)
 function submitToGoogle(data, formElement) {
     const btn = formElement.querySelector('button[type="submit"]');
     const originalText = btn.innerText;
@@ -201,8 +241,16 @@ function submitToGoogle(data, formElement) {
     })
     .then(response => {
         alert("Thank you! Your RSVP has been sent. / ¡Gracias! Tu confirmación ha sido enviada.");
-        btn.innerText = "SENT / ENVIADO";
+        
+        // Reset Button
+        btn.innerText = originalText;
+        btn.disabled = false;
+
+        // Reset the Forms
         formElement.reset();
+        
+        // Reset the UI State
+        resetRSVPUI();
     })
     .catch(error => {
         console.error('Error!', error.message);
@@ -210,4 +258,23 @@ function submitToGoogle(data, formElement) {
         btn.innerText = originalText;
         btn.disabled = false;
     });
+}
+
+// Helper function to return RSVP to Step 1
+function resetRSVPUI() {
+    // Hide "Yes" and "No" steps
+    stepNo.classList.add('hidden');
+    stepYes.classList.add('hidden');
+    formYes.classList.add('hidden');
+    
+    // Show Step 1
+    const step1 = document.getElementById('rsvp-step-1');
+    step1.classList.remove('hidden');
+
+    // Remove active state from buttons
+    if(btnNo) btnNo.classList.remove('active');
+    if(btnYes) btnYes.classList.remove('active');
+    
+    // Clear dynamic guest rows
+    if(containerGuests) containerGuests.innerHTML = '';
 }
