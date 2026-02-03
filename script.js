@@ -193,6 +193,16 @@ if (formYes) {
     formYes.addEventListener('submit', e => {
         e.preventDefault();
         
+        // --- NEW: Capture Contact Info ---
+        const emailInput = formYes.querySelector('input[name="email"]');
+        const phoneCode = formYes.querySelector('select[name="phone_code"]');
+        const phoneNum = formYes.querySelector('input[name="phone_number"]');
+        
+        const email = emailInput ? emailInput.value : "";
+        const phone_code = phoneCode ? phoneCode.value : "";
+        const phone_number = phoneNum ? phoneNum.value : "";
+
+        // --- Existing Guest Logic ---
         const count = formYes.getAttribute('data-guest-count');
         let guestList = []; 
         let mainName = ""; 
@@ -209,7 +219,7 @@ if (formYes) {
                 const ageChecked = row.querySelector(`input[name="guest_${i}_age"]:checked`);
                 const age = ageChecked ? ageChecked.value : "Unknown";
 
-                if (i === 1) mainName = name;
+                if (i === 1) mainName = name; // First guest is the Party Leader
 
                 guestList.push({
                     name: name,
@@ -219,9 +229,13 @@ if (formYes) {
             }
         }
 
+        // Send everything to Google
         submitToGoogle({
             attendance: "Yes",
             party_leader: mainName,
+            email: email,             // Added
+            phone_code: phone_code,   // Added
+            phone_number: phone_number, // Added
             guest_list: guestList 
         }, formYes);
     });

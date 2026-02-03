@@ -328,8 +328,15 @@ h3 {
 
 h4 {
     font-family: 'Quattrocento', serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+h5 {
+    font-family: 'Quattrocento', serif;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
