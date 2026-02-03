@@ -17,7 +17,7 @@ body, html {
 
 /* Fix for anchor links landing too low due to sticky nav */
 section {
-    scroll-margin-top: 140px; /* Accounts for taller mobile nav */
+    scroll-margin-top: 100px; /* Desktop default */
 }
 
 /* Fluid Layout */
@@ -26,22 +26,37 @@ img, input, textarea, button {
 }
 
 /* =========================================
-   2. HERO SECTION
+   2. HERO & GLOBAL BACKGROUND
    ========================================= */
-.hero-poster {
+
+/* The Fixed Background Image (Behind Everything) */
+#global-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url('Hf-background-tall.png');
     background-position: center top; 
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: -1; 
+    will-change: opacity;
+    opacity: 1; /* Changed via JS */
+}
+
+/* Hero Content Area */
+.hero-poster {
+    position: relative; 
     height: 100vh; 
     min-height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: rgba(0,0,0,0.3);
-    background-blend-mode: overlay;
     color: white;
+    /* Soft shadow to make text pop over image */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     padding: 20px;
 }
 
@@ -74,7 +89,7 @@ img, input, textarea, button {
     white-space: nowrap; 
 }
 
-/* --- UPDATED DATE STYLING --- */
+/* --- DATE STYLING --- */
 .date {
     font-family: 'Quattrocento', serif;
     font-size: 3.3rem;
@@ -84,14 +99,11 @@ img, input, textarea, button {
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-top: 5px;
-    
-    /* Logic to allow wrapping on small screens */
     flex-wrap: wrap; 
-    gap: 0 30px; /* 30px gap horizontally */
+    gap: 0 30px; 
     line-height: 1.2;
 }
 
-/* Keeps "September 26" glued together */
 .date span {
     white-space: nowrap; 
     display: inline-block;
@@ -141,10 +153,15 @@ img, input, textarea, button {
 }
 
 /* =========================================
-   3. NAVBAR (Compact Mobile, No Hamburger)
+   3. NAVBAR (Hidden initially, Slides down)
    ========================================= */
 .navbar {
+    /* Fixed at the top, but hidden above the viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    
     background: white;
     padding: 15px 40px;
     display: flex;
@@ -152,22 +169,20 @@ img, input, textarea, button {
     align-items: center;
     border-bottom: 1px solid #eee;
     z-index: 1000;
-    transition: all 0.3s ease;
+    
+    /* Animation settings */
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    
+    /* HIDDEN STATE */
+    transform: translateY(-100%);
+    opacity: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
 }
 
-/* Sticky State */
-.navbar.fixed-mode {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
+/* VISIBLE STATE (Added by JS) */
+.navbar.visible {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .nav-left {
@@ -220,27 +235,75 @@ img, input, textarea, button {
     color: #fff;
 }
 
-/* =========================================
-   4. LAYOUT & SECTIONS
-   ========================================= */
-/* The parent section handles the background color and vertical padding */
-.section-pad {
-    padding: 100px 0;
-    width: 100%;
+/* MOBILE ADJUSTMENTS FOR NAVBAR */
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column; 
+        padding: 10px 15px;
+        gap: 10px;
+    }
+
+    .logo { font-size: 1.1rem; }
+    
+    .nav-left { 
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+    
+    .nav-links { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 12px;
+        font-size: 0.75rem; 
+        width: 100%;
+        padding-bottom: 5px;
+    }
 }
 
-/* The container handles the width and centering of content */
+/* =========================================
+   4. LAYOUT & CARDS (The Boxed Look)
+   ========================================= */
+
+#location {
+    margin-top: 60px;
+}
+
+@media (max-width: 900px) {
+    #location {
+        margin-top: 40px;
+    }
+}
+
+/* The outer section is transparent to show the global background */
+.section-pad {
+    padding: 60px 0;
+    width: 100%;
+    background: transparent !important; 
+}
+
+/* The Container acts as the Card */
 .container {
     max-width: 900px;
     margin: 0 auto;
     text-align: center;
-    padding: 0 20px;
+    padding: 60px 40px;
+    
+    /* Box Styling */
+    background-color: #ffffff; 
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* Background Colors */
-.bg-offwhite { background-color: #f9f9f7; }
+/* Background Variations for the BOXES */
 
-.bg-vibrant-green { 
+/* Standard White/Off-White Box */
+.bg-offwhite .container { 
+    background-color: #f9f9f7; 
+}
+
+/* Green Box (RSVP) */
+.bg-vibrant-green .container { 
     background-color: #2E5E4E; 
     color: #fff;
 }
@@ -444,7 +507,7 @@ h4 {
 }
 
 /* =========================================
-   7. RSVP STYLES
+   7. RSVP STYLES (Updated with Phone & Labels)
    ========================================= */
 .rsvp-container {
     max-width: 800px;
@@ -517,7 +580,7 @@ h4 {
     transform: translateY(-3px);
 }
 
-/* Form Styling */
+/* --- FORM LAYOUT & INPUTS --- */
 .rsvp-form { animation: fadeIn 0.5s ease-in; }
 
 .input-field {
@@ -532,40 +595,105 @@ h4 {
     color: #333;
 }
 
-.guest-row {
-    background: rgba(255,255,255,0.15);
-    padding: 20px;
+.input-field:focus {
+    outline: none;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(46, 94, 78, 0.3);
+}
+
+/* Section Title inside form (Contact Info) */
+.form-section-title {
+    color: white;
     margin-bottom: 15px;
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 4px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 5px;
+}
+
+/* Phone Group: Code + Number */
+.phone-group {
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.guest-row input[type="text"] {
-    flex: 2;
-    margin-bottom: 0;
+.phone-code {
+    flex: 0 0 90px; /* Fixed width for code selector */
+    text-align: center;
+    padding-left: 5px;
+    cursor: pointer;
+    margin-bottom: 0; /* Override default margin */
 }
 
+.phone-input {
+    flex: 1; 
+    margin-bottom: 0; /* Override default margin */
+}
+
+/* --- DYNAMIC GUEST BLOCKS --- */
+.guest-block {
+    margin-bottom: 30px;
+}
+
+.guest-header {
+    color: #a2dcd0; /* Light Green Accent */
+    font-family: 'Quattrocento', serif;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.guest-row {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    gap: 0;
+}
+
+/* Reduce space between inputs inside the card */
+.guest-row .input-field {
+    margin-bottom: 15px;
+}
+
+/* Explicit Label for Age */
+.input-label {
+    color: white;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    text-align: left;
+    opacity: 0.9;
+}
+
+/* Age Buttons Group */
 .age-group {
     display: flex;
-    gap: 5px;
-    flex: 2;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.age-group label {
+    flex: 1; /* Even width */
 }
 
 .age-label {
     font-size: 0.75rem;
     color: #fff;
     border: 1px solid #fff;
-    padding: 12px 10px;
+    padding: 12px 0; /* Taller touch target */
     cursor: pointer;
     transition: all 0.2s;
     text-align: center;
-    flex: 1;
     border-radius: 4px;
+    display: block;
+    width: 100%;
 }
 
 .age-group input[type="radio"] { display: none; }
@@ -585,7 +713,7 @@ h4 {
     text-transform: uppercase;
     font-size: 0.9rem;
     letter-spacing: 2px;
-    margin-top: 20px;
+    margin-top: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     min-width: 200px;
@@ -614,7 +742,7 @@ footer {
 }
 
 /* =========================================
-   9. MOBILE RESPONSIVENESS (Final Fix)
+   9. MOBILE RESPONSIVENESS
    ========================================= */
 
 /* Tablet & Smaller Desktop */
@@ -630,16 +758,20 @@ footer {
 /* Mobile Phones & Vertical Tablets */
 @media (max-width: 900px) {
     
+    /* Global Background Adjustments */
+    #global-bg {
+        background-position: 20% top; /* Off-center for mobile */
+    }
+
     /* 1. HERO SECTION ADJUSTMENTS */
     .hero-poster {
-        height: auto;       /* Let it grow if text is long */
-        min-height: 100vh;  /* Ensure it fills at least one screen */
-       background-position: 20% top;
+        height: auto;
+        min-height: 100vh;
         
-        /* CRITICAL FIXES FOR TOP SPACING: */
-        align-items: flex-start; /* Align to top, don't try to center vertically */
-        padding-top: 90px;      /* Force 150px of space at the top */
-        padding-bottom: 50px;    /* Space at the bottom */
+        /* Top spacing alignment */
+        align-items: flex-start; 
+        padding-top: 90px;      
+        padding-bottom: 50px;    
     }
 
     .names { 
@@ -653,16 +785,15 @@ footer {
         font-size: 1rem;
     }
 
-    /* Tighter date wrapping */
+    /* Date Stacking */
     .date { 
         font-size: 1.6rem; 
         gap: 5px 0; 
-       flex-direction: column;
+        flex-direction: column; 
         margin-top: 15px;
     }
     .date span { width: auto; }
     
-    /* Reduce spacer since we have padding now */
     .spacer { height: 20px; }
 
     .location-text { 
@@ -672,28 +803,30 @@ footer {
     
     .venue { font-size: 1rem; }
 
+    /* Buttons Side-by-Side */
     .hero-buttons {
         margin-top: 30px; 
-        flex-direction: row;
+        flex-direction: row; 
+        justify-content: center;
         align-items: center;
         gap: 15px;
     }
 
-   .btn-hero {
-    padding: 12px 22px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.8rem;
-    min-width: 110px;
-}
+    .btn-hero {
+        padding: 12px 15px; 
+        font-family: 'Lato', sans-serif;
+        font-size: 0.8rem;
+        min-width: 100px;
+    }
     
-    /* 2. NAVBAR & SECTIONS */
+    /* 2. NAVBAR & CARDS */
     .navbar {
         flex-direction: column; 
         padding: 10px 15px;
         gap: 10px;
     }
 
-   .logo {
+    .logo {
         font-size: 1.1rem;
     }
     
@@ -712,7 +845,18 @@ footer {
         padding-bottom: 5px;
     }
     
-    .section-pad { padding: 50px 0; }
+    /* Taller scroll margin for stacked menu */
+    section { scroll-margin-top: 150px; }
+
+    /* Boxed layout adjustments for mobile */
+    .container {
+        width: 90%; 
+        padding: 40px 20px;
+    }
+    
+    .section-pad {
+        padding: 40px 0;
+    }
 
     /* 3. GRIDS TO STACKS */
     .schedule-grid, .travel-grid, .faq-grid { 
@@ -736,6 +880,7 @@ footer {
     .age-group { justify-content: space-between; }
     .btn-submit { width: 100%; }
 }
+
 /* =========================================
    10. LANGUAGES
    ========================================= */
@@ -751,9 +896,5 @@ body.spanish-mode .lang-es { display: block !important; }
 body.spanish-mode li.lang-es { display: inline-block !important; }
 body.spanish-mode .btn-hotel.lang-es { display: inline-block !important; }
 
-/* Exception 2 (THE FIX): The Date must remain Flex to stack correctly */
+/* Exception 2: The Date must remain Flex to stack correctly */
 body.spanish-mode p.date.lang-es { display: flex !important; }
-
-
-
-
