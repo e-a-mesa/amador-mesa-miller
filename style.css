@@ -874,6 +874,7 @@ footer {
     .travel-col, .faq-item { 
         text-align: center; 
         width: 100%;
+        min-width: 0;
     }
     
     .divider-small { margin: 20px auto; }
