@@ -871,6 +871,21 @@ footer {
         gap: 30px; 
     }
     
+    .schedule-day {
+        /* "Be 100% of the available space..." */
+        width: 100%;       
+        
+        /* "...but never exceed 280px." (A safe, compact card size) */
+        max-width: 280px;  
+        
+        /* Center the card horizontally */
+        margin: 0 auto;    
+        
+        /* Optional: Add a tiny shadow so they pop like real cards */
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border-radius: 4px; /* Soften the corners */
+    }
+    
     .travel-col, .faq-item { 
         text-align: center; 
         width: 100%;
