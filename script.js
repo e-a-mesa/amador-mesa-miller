@@ -34,26 +34,6 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// --- PARALLAX FADE LOGIC (NEW) ---
-window.addEventListener('scroll', function() {
-    const bg = document.getElementById('global-bg');
-    const hero = document.querySelector('.hero-poster');
-    
-    if (bg && hero) {
-        const scrollPosition = window.pageYOffset;
-        const heroHeight = hero.offsetHeight;
-
-        // Calculate opacity: 1 - (scroll / height)
-        let opacityValue = 1 - (scrollPosition / heroHeight);
-
-        // Stop the fade at 0.15 (15% visibility) so it remains visible
-        if (opacityValue < 0.15) opacityValue = 0.15;
-        if (opacityValue > 1) opacityValue = 1;
-
-        bg.style.opacity = opacityValue;
-    }
-});
-
 // --- LANGUAGE LOGIC ---
 const storedLang = localStorage.getItem('weddingLang');
 if (storedLang === 'es') {
@@ -291,4 +271,86 @@ function resetRSVPUI() {
     
     // Clear dynamic guest rows
     if(containerGuests) containerGuests.innerHTML = '';
+}
+
+// =========================================
+// ROOM BOOKING LOGIC
+// =========================================
+
+const bookingModal = document.getElementById('booking-modal');
+const closeModalBtn = document.getElementById('close-modal');
+const bookingForm = document.getElementById('booking-form');
+const roomCards = document.querySelectorAll('.room-card');
+
+// 1. Open Modal on Card Click
+roomCards.forEach(card => {
+    // We target the overlay specifically so normal text selection isn't blocked 
+    // if you didn't have the overlay. But with overlay, clicking anywhere works.
+    const overlay = card.querySelector('.card-overlay');
+    
+    if(overlay) {
+        overlay.addEventListener('click', () => {
+            const roomName = card.getAttribute('data-room');
+            
+            // Populate Modal
+            document.getElementById('modal-room-name').textContent = roomName;
+            document.getElementById('hidden-room-name').value = roomName;
+            
+            // Show Modal
+            bookingModal.classList.remove('hidden');
+        });
+    }
+});
+
+// 2. Close Modal
+if(closeModalBtn) {
+    closeModalBtn.addEventListener('click', () => {
+        bookingModal.classList.add('hidden');
+    });
+}
+
+// Close if clicking outside the box
+if(bookingModal) {
+    bookingModal.addEventListener('click', (e) => {
+        if (e.target === bookingModal) {
+            bookingModal.classList.add('hidden');
+        }
+    });
+}
+
+// 3. Submit Booking
+if(bookingForm) {
+    bookingForm.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        const btn = bookingForm.querySelector('button[type="submit"]');
+        const originalText = btn.innerText;
+        btn.innerText = "SENDING...";
+        btn.disabled = true;
+
+        const data = {
+            submission_type: "booking", // Tells Google Script this is a room req
+            room_name: bookingForm.room_name.value,
+            contact_name: bookingForm.contact_name.value,
+            contact_email: bookingForm.contact_email.value
+        };
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            mode: 'no-cors'
+        })
+        .then(() => {
+            alert("Request Sent! We will contact you shortly. / ¡Solicitud Enviada!");
+            bookingModal.classList.add('hidden');
+            bookingForm.reset();
+            btn.innerText = originalText;
+            btn.disabled = false;
+        })
+        .catch(error => {
+            alert("Error sending request.");
+            btn.innerText = originalText;
+            btn.disabled = false;
+        });
+    });
 }
