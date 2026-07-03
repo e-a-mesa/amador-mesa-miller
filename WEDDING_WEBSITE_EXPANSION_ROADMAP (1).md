@@ -84,30 +84,16 @@ with Things To Do and Registry shown as prominent cards in the body.
 
 ## Goal
 
-Add a light privacy gate that asks guests to enter a shared wedding password before viewing the site.
+Add a light privacy gate that asks guests to enter a shared wedding password before viewing the site. 
 
 This is common for wedding websites and is acceptable for casual guest privacy. It is not true security because the site is static and the password can be found in the HTML/JavaScript by someone technical.
-
-## Important caveat
-
-Because the site is hosted as static files, the password gate should be treated as a courtesy privacy screen, not as protection for sensitive information.
-
-Do not put truly sensitive information in the site source, including:
-
-- Private addresses not intended for guests
-- Bank details
-- Cash transfer handles
-- Private phone numbers
-- Private guest lists
-- Sensitive pricing or room data
-- Anything that would be a problem if someone viewed the source code
 
 ## Recommended behavior
 
 The password gate should:
 
-- Appear on all guest-facing pages.
-- Ask for the password from the invitation.
+The site should load with the background and the "The Wedding of RACHEL & ERNESTO SEPTEMBER  26 2026" text, and if the guests want to scroll or click or do anything there is a popup asking for the passowrd. The popus will have a picture of Walter, and below the input box. The password is 'Walter'
+- once the password is inputed in the index, the links in the index to other guest facing sites should include some kind of 'code' that the other pages check before rendering. that way the password is only neede for the index but it is not trivial to just put / rooms.html in the url.
 - Support English and Spanish.
 - Store successful unlock status in `localStorage`.
 - Let guests unlock once and continue browsing.

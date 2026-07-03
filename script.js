@@ -1,5 +1,82 @@
+// =========================================
+// PASSWORD GATE
+// =========================================
+const SITE_PASSWORD = 'Walter';
+const PASSWORD_STORAGE_KEY = 'weddingSiteUnlocked';
+
+function initPasswordGate() {
+    if (!document.body.classList.contains('site-locked')) return;
+    if (localStorage.getItem(PASSWORD_STORAGE_KEY) === 'true') {
+        document.body.classList.remove('site-locked');
+        return;
+    }
+
+    const gate = document.createElement('div');
+    gate.className = 'password-gate';
+    gate.setAttribute('role', 'dialog');
+    gate.setAttribute('aria-modal', 'true');
+    gate.setAttribute('aria-labelledby', 'gate-title');
+    gate.innerHTML = `
+        <div class="password-card">
+            <h2 id="gate-title">Rachel &amp; Ernesto</h2>
+            <p class="lang-en">Welcome! Please enter the password from your invitation.</p>
+            <p class="lang-es">Bienvenidos. Por favor ingresa la clave de la invitación.</p>
+            <form id="password-form">
+                <label class="sr-only" for="site-password">Password / Clave</label>
+                <input id="site-password" type="password" autocomplete="current-password"
+                       placeholder="Password / Clave" required>
+                <button type="submit">Enter / Entrar</button>
+                <p id="gate-error" class="password-error" hidden>
+                    <span class="lang-en">That password did not work. Please check your invitation and try again.</span>
+                    <span class="lang-es">Esa clave no funcionó. Por favor revisa tu invitación e inténtalo de nuevo.</span>
+                </p>
+            </form>
+        </div>
+    `;
+    document.body.appendChild(gate);
+
+    const form  = document.getElementById('password-form');
+    const input = document.getElementById('site-password');
+    const error = document.getElementById('gate-error');
+    input.focus();
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value.trim().toLowerCase() === SITE_PASSWORD.toLowerCase()) {
+            localStorage.setItem(PASSWORD_STORAGE_KEY, 'true');
+            gate.remove();
+            document.body.classList.remove('site-locked');
+        } else {
+            error.hidden = false;
+            input.value = '';
+            input.focus();
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initPasswordGate);
+
+function initThingsNav() {
+    var tabs = document.querySelectorAll('.things-tab');
+    var groups = document.querySelectorAll('.things-tab-group');
+    if (!tabs.length) return;
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            var target = this.dataset.tab;
+            tabs.forEach(function(t) { t.classList.remove('active'); });
+            this.classList.add('active');
+            groups.forEach(function(g) {
+                g.classList.toggle('hidden', g.dataset.tab !== target);
+            });
+        });
+    });
+}
+document.addEventListener('DOMContentLoaded', initThingsNav);
+
+// =========================================
 // 1. CONFIGURATION
-const scriptURL = 'https://script.google.com/macros/s/AKfycbx6tElnpkrRjcnZ2mLjHQj8OzLrW0tKGDluIb6pWSfk-EwEV1u_3fPgKQQFDdtFGGtL/exec'; 
+// =========================================
+const scriptURL = 'https://script.google.com/macros/s/AKfycbx6tElnpkrRjcnZ2mLjHQj8OzLrW0tKGDluIb6pWSfk-EwEV1u_3fPgKQQFDdtFGGtL/exec';
 
 // 2. SELECT DOM ELEMENTS
 const navbar = document.getElementById("navbar");
@@ -77,7 +154,7 @@ function disableSpanish() {
 }
 
 function scrollToContent() {
-    const target = document.getElementById('location');
+    const target = document.getElementById('schedule');
     if (!target) return;
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }

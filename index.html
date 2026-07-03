@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rachel & Ernesto</title>
+    <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="site-locked">
 
     <div id="global-bg"></div>
 
@@ -54,52 +55,110 @@
         </div>
         
         <ul class="nav-links">
-            <li class="lang-en"><a href="#location">Schedule</a></li>
+            <li class="lang-en"><a href="#schedule">Schedule</a></li>
             <li class="lang-en"><a href="#accommodations">Stay</a></li>
             <li class="lang-en"><a href="#travel">Travel</a></li>
+            <li class="lang-en"><a href="things.html">Things To Do</a></li>
+            <li class="lang-en"><a href="registry.html">Registry</a></li>
             <li class="lang-en"><a href="#faq">FAQ</a></li>
             <li class="lang-en"><a href="#rsvp">RSVP</a></li>
 
-            <li class="lang-es"><a href="#location">Evento</a></li>
-            <li class="lang-es"><a href="#accommodations">Hotel</a></li>
+            <li class="lang-es"><a href="#schedule">Evento</a></li>
+            <li class="lang-es"><a href="#accommodations">Hospedaje</a></li>
             <li class="lang-es"><a href="#travel">Viaje</a></li>
+            <li class="lang-es"><a href="things.html">Qué Hacer</a></li>
+            <li class="lang-es"><a href="registry.html">Regalos</a></li>
             <li class="lang-es"><a href="#faq">FAQ</a></li>
             <li class="lang-es"><a href="#rsvp">RSVP</a></li>
         </ul>
     </nav>
 
-    <section id="location" class="section-pad">
+    <section id="schedule" class="section-pad">
         <div class="container">
             <span class="section-subtitle lang-en">Celebrate with us</span>
             <span class="section-subtitle lang-es">Celebra con nosotros</span>
-            
+
             <h2 class="lang-en">Our Wedding</h2>
             <h2 class="lang-es">Nuestro Matrimonio</h2>
-            
+
             <div class="text-block">
                 <p class="desc lang-en">We invite you to celebrate our wedding with a weekend in Southern Vermont.</p>
                 <p class="desc lang-es">Te invitamos a celebrar nuestro matrimonio en el sur de Vermont.</p>
             </div>
 
             <div class="schedule-grid">
-                <div class="schedule-day">
-                    <span class="day-date lang-en">FRIDAY SEPTEMBER 25</span>
-                    <span class="day-date lang-es">VIERNES SEPTIEMBRE 25</span>
-                    <p class="day-event lang-en">Welcome party</p>
-                    <p class="day-event lang-es">Fiesta Bienvenida</p>
+
+                <!-- FRIDAY -->
+                <div class="schedule-day schedule-day-detail">
+                    <span class="day-date lang-en">FRIDAY, SEPTEMBER 25</span>
+                    <span class="day-date lang-es">VIERNES, 25 DE SEPTIEMBRE</span>
+
+                    <div class="event-list">
+                        <div class="event-item">
+                            <span class="event-time lang-en">6:00 – 9:00 PM</span>
+                            <span class="event-time lang-es">6:00 – 9:00 PM</span>
+                            <h4 class="lang-en">Welcome Party</h4>
+                            <h4 class="lang-es">Fiesta de Bienvenida</h4>
+                            <p class="lang-en">Hill Farm Inn</p>
+                            <p class="lang-es">Hill Farm Inn</p>
+                            <p class="event-note lang-en">Attire: Casual</p>
+                            <p class="event-note lang-es">Vestimenta: Casual</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="schedule-day">
-                    <span class="day-date lang-en">SATURDAY SEPTEMBER 26</span>
-                    <span class="day-date lang-es">SÁBADO SEPTIEMBRE 26</span>
-                    <p class="day-event lang-en">Ceremony &<br>Wedding Reception</p>
-                    <p class="day-event lang-es">Ceremonia y<br>Recepción</p>
+
+                <!-- SATURDAY -->
+                <div class="schedule-day schedule-day-detail">
+                    <span class="day-date lang-en">SATURDAY, SEPTEMBER 26</span>
+                    <span class="day-date lang-es">SÁBADO, 26 DE SEPTIEMBRE</span>
+
+                    <div class="event-list">
+                        <div class="event-item">
+                            <span class="event-time lang-en">4:00 PM</span>
+                            <span class="event-time lang-es">4:00 PM</span>
+                            <h4 class="lang-en">Ceremony</h4>
+                            <h4 class="lang-es">Ceremonia</h4>
+                            <p class="lang-en">Hill Farm Inn</p>
+                            <p class="lang-es">Hill Farm Inn</p>
+                        </div>
+                        <div class="event-item">
+                            <span class="event-time lang-en">4:45 PM</span>
+                            <span class="event-time lang-es">4:45 PM</span>
+                            <h4 class="lang-en">Cocktail Hour</h4>
+                            <h4 class="lang-es">Cóctel</h4>
+                            <p class="lang-en">Hill Farm Inn</p>
+                            <p class="lang-es">Hill Farm Inn</p>
+                        </div>
+                        <div class="event-item">
+                            <span class="event-time lang-en">6:00 PM</span>
+                            <span class="event-time lang-es">6:00 PM</span>
+                            <h4 class="lang-en">Reception</h4>
+                            <h4 class="lang-es">Recepción</h4>
+                            <p class="lang-en">Hill Farm Inn</p>
+                            <p class="lang-es">Hill Farm Inn</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="schedule-day">
-                    <span class="day-date lang-en">SUNDAY SEPTEMBER 27</span>
-                    <span class="day-date lang-es">DOMINGO SEPTIEMBRE 27</span>
-                    <p class="day-event lang-en">Brunch</p>
-                    <p class="day-event lang-es">Brunch</p>
+
+                <!-- SUNDAY -->
+                <div class="schedule-day schedule-day-detail">
+                    <span class="day-date lang-en">SUNDAY, SEPTEMBER 27</span>
+                    <span class="day-date lang-es">DOMINGO, 27 DE SEPTIEMBRE</span>
+
+                    <div class="event-list">
+                        <div class="event-item">
+                            <span class="event-time lang-en">8:00 – 11:00 AM</span>
+                            <span class="event-time lang-es">8:00 – 11:00 AM</span>
+                            <h4 class="lang-en">Farewell Breakfast</h4>
+                            <h4 class="lang-es">Desayuno de Despedida</h4>
+                            <p class="lang-en">Hill Farm Inn — Come and share breakfast with us anytime between 8:00 and 11:00 AM.</p>
+                            <p class="lang-es">Hill Farm Inn — Ven a desayunar con nosotros en cualquier momento entre las 8:00 y las 11:00 AM.</p>
+                            <p class="event-note lang-en">Attire: Casual</p>
+                            <p class="event-note lang-es">Vestimenta: Casual</p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -143,50 +202,102 @@
         <div class="container">
             <span class="section-subtitle lang-en">Travel</span>
             <span class="section-subtitle lang-es">El Viaje</span>
-            
-            <h2 class="lang-en">Getting Here</h2>
-            <h2 class="lang-es">Cómo Llegar</h2>
-            
-            <div class="travel-grid">
-                
-                <div class="travel-col">
-                    <h3 class="lang-en">Domestic & Regional</h3>
-                    <h3 class="lang-es">Vuelos Domésticos & Regionales</h3>
-                    
-                    <p class="lang-en"><strong>Fly to Albany (ALB)</strong><br>The closest airport (1 hour away).</p>
-                    <p class="lang-es"><strong>Vuela a Albany (ALB)</strong><br>El aeropuerto más cercano (a 1 hora).</p>
-                    
-                    <p class="lang-en">Rent a car or take the bus to Manchester.</p>
-                    <p class="lang-es">Alquila un carro o toma el bus hasta Manchester.</p>
-                    
-                </div>
 
-                <div class="travel-col">
-                    <h3 class="lang-en">From Colombia</h3>
-                    <h3 class="lang-es">Desde Colombia</h3>
-                    
-                    <p class="lang-en"><strong>Via Boston (BOS)</strong><br>Fly Bogotá to Boston.<br><br>The drive from Boston to Hill Farm is around 3 hours.</p>
-                    <p class="lang-es"><strong>Vía Boston (BOS)</strong><br>Vuela de Bogotá a Boston.<br><br>Llegar en carro desde Boston dura aproximadamente 3 Horas.</p>
-                    
-                    <div class="divider-small"></div>
+            <h2 class="lang-en">Travel Information</h2>
+            <h2 class="lang-es">Información de Viaje</h2>
 
-                    <p class="lang-en"><strong>Via New York City (JFK/EWR/LGA)</strong><br>Fly Bogotá to New York City.<br><br> From NYC you can drive to Hill Farm (4 hours) or take an Amtrak Train from Penn Station to Albany-Rensselaer.</p>
-                    <p class="lang-es"><strong>Vía Nueva York (JFK/EWR/LGA)</strong><br>Vuela de Bogotá a Nueva York.<br><br>Desde Nueva York puedes llegar en carro (4 horas) o tomar un tren Amtrak desde Penn Station hasta Albany-Rensselaer.</p>
-                </div>
+            <div class="text-block">
+                <p class="desc lang-en">Most guests will find it easiest to rent a car, especially if they want to explore Manchester or the surrounding area during the weekend. For guests who prefer not to drive the full way, train and bus options are also available.</p>
+                <p class="desc lang-es">Para la mayoría de los invitados, lo más fácil será alquilar un carro, especialmente si quieren explorar Manchester o los alrededores durante el fin de semana. Para quienes prefieran no manejar todo el trayecto, también hay opciones de tren y bus.</p>
             </div>
 
-            <div class="overflow-block">
-                <h4 class="lang-en">Driving Directions</h4>
-                <h4 class="lang-es">Direcciones</h4>
-                
-                <p class="lang-en">Hill Farm Inn is located at <strong>458 Hill Farm Rd, Sunderland, VT</strong>.</p>
-                <p class="lang-es">Hill Farm Inn está ubicado en <strong>458 Hill Farm Rd, Sunderland, VT</strong>.</p>
-                
-                <p class="desc lang-en">Whether coming from NYC, Boston, or Albany, the drive through the Green Mountains is scenic and beautiful.</p>
-                <p class="desc lang-es">Desde Nueva York, Boston o Albany, disfruta del camino a través de las montañas hacia  el sur de Vermont.</p>
-                
-                <a href="https://maps.app.goo.gl/UhhaFYrD8niwfYwZA" target="_blank" rel="noopener noreferrer" class="btn-outline lang-en">VIEW ON GOOGLE MAPS</a>
-                <a href="https://maps.app.goo.gl/UhhaFYrD8niwfYwZA" target="_blank" rel="noopener noreferrer" class="btn-outline lang-es">VER EN GOOGLE MAPS</a>
+            <div class="travel-cards">
+
+                <div class="detail-card">
+                    <span class="card-kicker lang-en">Flying in</span>
+                    <span class="card-kicker lang-es">Vuelo</span>
+                    <h3 class="lang-en">Flying into Albany</h3>
+                    <h3 class="lang-es">Vuelos a Albany</h3>
+                    <p class="lang-en"><strong>Best for:</strong> Guests flying domestically or connecting through a U.S. hub.</p>
+                    <p class="lang-es"><strong>Ideal para:</strong> Invitados que viajan dentro de Estados Unidos o hacen conexión por una ciudad estadounidense.</p>
+                    <p class="lang-en"><strong>What to book:</strong> A flight to Albany International Airport (ALB), then a rental car to Hill Farm — about 1 hour away.</p>
+                    <p class="lang-es"><strong>Qué reservar:</strong> Un vuelo al Aeropuerto Internacional de Albany (ALB) y luego un carro de alquiler hasta Hill Farm — a aproximadamente 1 hora.</p>
+                    <p class="lang-en"><strong>Notes:</strong> This is likely the simplest route for many guests. Having a car will also make it easier to explore Manchester during the weekend.</p>
+                    <p class="lang-es"><strong>Notas:</strong> Probablemente sea la ruta más sencilla para muchos invitados. Tener carro también facilita explorar Manchester durante el fin de semana.</p>
+                </div>
+
+                <div class="detail-card">
+                    <span class="card-kicker lang-en">International</span>
+                    <span class="card-kicker lang-es">Internacional</span>
+                    <h3 class="lang-en">International Routes</h3>
+                    <h3 class="lang-es">Rutas Internacionales</h3>
+                    <p class="lang-en"><strong>Best for:</strong> Guests traveling from Colombia or outside the United States.</p>
+                    <p class="lang-es"><strong>Ideal para:</strong> Invitados que viajan desde Colombia o desde fuera de Estados Unidos.</p>
+                    <p class="lang-en"><strong>What to book:</strong> Flights into Boston (BOS) — about 3 hours by car — or New York City (JFK/EWR/LGA) — about 4 hours. From NYC you can also take an Amtrak train to Albany-Rensselaer.</p>
+                    <p class="lang-es"><strong>Qué reservar:</strong> Vuelos a Boston (BOS) — a aproximadamente 3 horas en carro — o Nueva York (JFK/EWR/LGA) — a unas 4 horas. Desde Nueva York también puedes tomar un tren Amtrak hasta Albany-Rensselaer.</p>
+                    <p class="lang-en"><strong>Notes:</strong> Compare total travel time carefully — the cheapest flight may not be the easiest route once ground transportation is included.</p>
+                    <p class="lang-es"><strong>Notas:</strong> Compara bien el tiempo total del viaje — el vuelo más barato no siempre es la ruta más fácil cuando se incluye el transporte terrestre.</p>
+                </div>
+
+                <div class="detail-card">
+                    <span class="card-kicker lang-en">No car</span>
+                    <span class="card-kicker lang-es">Sin carro</span>
+                    <h3 class="lang-en">Train + Bus Option</h3>
+                    <h3 class="lang-es">Opción de Tren y Bus</h3>
+                    <p class="lang-en"><strong>Best for:</strong> Guests who prefer not to drive the full way.</p>
+                    <p class="lang-es"><strong>Ideal para:</strong> Invitados que prefieren no manejar todo el camino.</p>
+                    <p class="lang-en"><strong>What to book:</strong> Amtrak to Albany-Rensselaer, then Vermont Translines bus service toward Manchester / Sunderland.</p>
+                    <p class="lang-es"><strong>Qué reservar:</strong> Tren Amtrak hasta Albany-Rensselaer y luego servicio de bus de Vermont Translines hacia Manchester / Sunderland.</p>
+                    <p class="lang-en"><strong>Notes:</strong> Please check current schedules before booking. Rural transportation can be limited, especially later in the day.</p>
+                    <p class="lang-es"><strong>Notas:</strong> Por favor revisa los horarios actuales antes de reservar. El transporte rural puede ser limitado, especialmente más tarde en el día.</p>
+                </div>
+
+                <div class="detail-card">
+                    <span class="card-kicker lang-en">Address</span>
+                    <span class="card-kicker lang-es">Dirección</span>
+                    <h3 class="lang-en">Driving Directions</h3>
+                    <h3 class="lang-es">Cómo Llegar en Carro</h3>
+                    <p class="lang-en"><strong>Hill Farm Inn</strong><br>458 Hill Farm Rd<br>Sunderland, VT 05250</p>
+                    <p class="lang-es"><strong>Hill Farm Inn</strong><br>458 Hill Farm Rd<br>Sunderland, VT 05250</p>
+                    <p class="lang-en">Whether coming from NYC, Boston, or Albany, the drive through the Green Mountains is scenic and beautiful.</p>
+                    <p class="lang-es">Desde Nueva York, Boston o Albany, disfruta del camino a través de las Montañas Verdes hacia el sur de Vermont.</p>
+                    <a href="https://maps.app.goo.gl/UhhaFYrD8niwfYwZA" target="_blank" rel="noopener noreferrer" class="btn-outline lang-en" style="margin-top:20px;">VIEW ON GOOGLE MAPS</a>
+                    <a href="https://maps.app.goo.gl/UhhaFYrD8niwfYwZA" target="_blank" rel="noopener noreferrer" class="btn-outline lang-es" style="margin-top:20px;">VER EN GOOGLE MAPS</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="guest-details" class="section-pad bg-offwhite">
+        <div class="container">
+            <span class="section-subtitle lang-en">Weekend Details</span>
+            <span class="section-subtitle lang-es">Detalles del Fin de Semana</span>
+
+            <h2 class="lang-en">Plan Your Weekend</h2>
+            <h2 class="lang-es">Planea Tu Fin de Semana</h2>
+
+            <div class="link-card-grid">
+                <a href="rooms.html" class="link-card">
+                    <h3 class="lang-en">Stay</h3>
+                    <h3 class="lang-es">Hospedaje</h3>
+                    <p class="lang-en">See available accommodations and request a room at Hill Farm.</p>
+                    <p class="lang-es">Consulta las opciones disponibles y solicita una reserva en Hill Farm.</p>
+                </a>
+
+                <a href="things.html" class="link-card">
+                    <h3 class="lang-en">Things To Do</h3>
+                    <h3 class="lang-es">Qué Hacer</h3>
+                    <p class="lang-en">A few ideas for exploring Hill Farm, Manchester, and Southern Vermont.</p>
+                    <p class="lang-es">Algunas ideas para disfrutar Hill Farm, Manchester y el sur de Vermont.</p>
+                </a>
+
+                <a href="registry.html" class="link-card">
+                    <h3 class="lang-en">Registry</h3>
+                    <h3 class="lang-es">Regalos</h3>
+                    <p class="lang-en">For those who have asked, our registry links are here.</p>
+                    <p class="lang-es">Para quienes nos han preguntado, aquí están los enlaces.</p>
+                </a>
             </div>
         </div>
     </section>
