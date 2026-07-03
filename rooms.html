@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rooms - Rachel & Ernesto</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="bg-offwhite">
@@ -25,12 +27,12 @@
     <section class="section-pad" id="section-rooms">
         <div class="container">
             <h2 class="lang-en">
-                <a href="https://www.hillfarminn.com/inn-rooms" target="_blank" class="header-link">
+                <a href="https://www.hillfarminn.com/inn-rooms" target="_blank" rel="noopener noreferrer" class="header-link">
                     Rooms »
                 </a>
             </h2>
             <h2 class="lang-es">
-                <a href="https://www.hillfarminn.com/inn-rooms" target="_blank" class="header-link">
+                <a href="https://www.hillfarminn.com/inn-rooms" target="_blank" rel="noopener noreferrer" class="header-link">
                     Cuartos »
                 </a>
             </h2>
@@ -319,12 +321,12 @@
     <section class="section-pad" id="section-cottages">
         <div class="container">
             <h2 class="lang-en">
-                <a href="https://www.hillfarminn.com/cottages" target="_blank" class="header-link">
+                <a href="https://www.hillfarminn.com/cottages" target="_blank" rel="noopener noreferrer" class="header-link">
                     Cottages »
                 </a>
             </h2>
             <h2 class="lang-es">
-                <a href="https://www.hillfarminn.com/cottages" target="_blank" class="header-link">
+                <a href="https://www.hillfarminn.com/cottages" target="_blank" rel="noopener noreferrer" class="header-link">
                     Cabañas »
                 </a>
             </h2>
@@ -363,12 +365,12 @@
     <section class="section-pad bg-offwhite" id="section-river-house">
         <div class="container">
             <h2 class="lang-en">
-                <a href="https://www.hillfarminn.com/river-house" target="_blank" class="header-link">
+                <a href="https://www.hillfarminn.com/river-house" target="_blank" rel="noopener noreferrer" class="header-link">
                     River House »
                 </a>
             </h2>
             <h2 class="lang-es">
-                <a href="https://www.hillfarminn.com/river-house" target="_blank" class="header-link">
+                <a href="https://www.hillfarminn.com/river-house" target="_blank" rel="noopener noreferrer" class="header-link">
                     Casa del Río »
                 </a>
             </h2>
@@ -458,11 +460,11 @@
         <p>Built by Ernesto for Rachel & Walter • 2026</p>
     </footer>
 
-    <div id="booking-modal" class="modal-overlay hidden">
+    <div id="booking-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
         <div class="modal-content">
-            <button id="close-modal" class="btn-close">&times;</button>
+            <button id="close-modal" class="btn-close" aria-label="Close booking form">&times;</button>
 
-            <h3 class="lang-en">Request to Book</h3>
+            <h3 id="booking-modal-title" class="lang-en">Request to Book</h3>
             <h3 class="lang-es">Solicitar Reserva</h3>
 
             <p id="modal-room-name" class="room-target-name"></p>

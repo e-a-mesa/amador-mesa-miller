@@ -280,6 +280,12 @@ function resetRSVPUI() {
 const bookingModal = document.getElementById('booking-modal');
 const closeModalBtn = document.getElementById('close-modal');
 const bookingForm = document.getElementById('booking-form');
+let lastFocusedBtn = null;
+
+function closeModal() {
+    bookingModal.classList.add('hidden');
+    if (lastFocusedBtn) lastFocusedBtn.focus();
+}
 
 // 1. Open Modal on Book button click (works on touch and keyboard)
 document.querySelectorAll('.btn-book').forEach(btn => {
@@ -290,30 +296,29 @@ document.querySelectorAll('.btn-book').forEach(btn => {
         document.getElementById('modal-room-name').textContent = roomName;
         document.getElementById('hidden-room-name').value = roomName;
 
+        lastFocusedBtn = btn;
         bookingModal.classList.remove('hidden');
+        const firstFocusable = bookingModal.querySelector('button, input:not([type="hidden"])');
+        if (firstFocusable) firstFocusable.focus();
     });
 });
 
 // 2. Close Modal
 if(closeModalBtn) {
-    closeModalBtn.addEventListener('click', () => {
-        bookingModal.classList.add('hidden');
-    });
+    closeModalBtn.addEventListener('click', closeModal);
 }
 
 // Close if clicking outside the box
 if(bookingModal) {
     bookingModal.addEventListener('click', (e) => {
-        if (e.target === bookingModal) {
-            bookingModal.classList.add('hidden');
-        }
+        if (e.target === bookingModal) closeModal();
     });
 }
 
 // Close modal on Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && bookingModal && !bookingModal.classList.contains('hidden')) {
-        bookingModal.classList.add('hidden');
+        closeModal();
     }
 });
 
