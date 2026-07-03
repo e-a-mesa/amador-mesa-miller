@@ -77,11 +77,9 @@ function disableSpanish() {
 }
 
 function scrollToContent() {
-    const yOffset = -20; 
-    if (navbar) {
-        const y = navbar.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({top: y, behavior: 'smooth'});
-    }
+    const target = document.getElementById('location');
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // --- DYNAMIC RSVP FORM LOGIC ---
@@ -135,17 +133,19 @@ window.generateGuests = function(count) {
                 <h5 class="guest-header">Guest ${i} / Invitado ${i}</h5>
 
                 <div class="guest-row" id="guest-row-${i}">
-                    <input type="text" class="input-name input-field" placeholder="Full Name / Nombre Completo" required>
-                    
-                    <p class="input-label">Age Group / Edad</p>
-                    <div class="age-group">
+                    <label class="sr-only" for="guest-${i}-name">Full Name / Nombre completo</label>
+                    <input id="guest-${i}-name" type="text" class="input-name input-field" placeholder="Full Name / Nombre Completo" required>
+
+                    <p class="input-label" id="guest-${i}-age-label">Age Group / Edad</p>
+                    <div class="age-group" aria-labelledby="guest-${i}-age-label">
                         <label><input type="radio" name="guest_${i}_age" value="0-6"><span class="age-label">0-6</span></label>
                         <label><input type="radio" name="guest_${i}_age" value="7-12"><span class="age-label">7-12</span></label>
                         <label><input type="radio" name="guest_${i}_age" value="13-20"><span class="age-label">13-20</span></label>
                         <label><input type="radio" name="guest_${i}_age" value="21+" checked><span class="age-label">21+</span></label>
                     </div>
-                    
-                    <input type="text" class="input-diet input-field" placeholder="Dietary Restrictions / Dieta (Optional)" style="margin-top: 15px;">
+
+                    <label class="sr-only" for="guest-${i}-diet">Dietary Restrictions / Dieta</label>
+                    <input id="guest-${i}-diet" type="text" class="input-diet input-field" placeholder="Dietary Restrictions / Dieta (Optional)" style="margin-top: 15px;">
                 </div>
             </div>
         `;
@@ -234,7 +234,7 @@ function submitToGoogle(data, formElement) {
         mode: 'no-cors' 
     })
     .then(response => {
-        alert("Thank you! Your RSVP has been sent. / ¡Gracias! Tu confirmación ha sido enviada.");
+        alert("Thank you! Your RSVP was submitted. If you need to make a change, email us at amador.mesa.miller@gmail.com. / ¡Gracias! Tu confirmación fue enviada. Si necesitas hacer un cambio, escríbenos a amador.mesa.miller@gmail.com.");
         
         // Reset Button
         btn.innerText = originalText;
@@ -248,7 +248,7 @@ function submitToGoogle(data, formElement) {
     })
     .catch(error => {
         console.error('Error!', error.message);
-        alert("Something went wrong. Please try again.");
+        alert("Something went wrong. Please email amador.mesa.miller@gmail.com to RSVP. / Algo salió mal. Por favor escríbenos a amador.mesa.miller@gmail.com para confirmar tu asistencia.");
         btn.innerText = originalText;
         btn.disabled = false;
     });
@@ -280,26 +280,18 @@ function resetRSVPUI() {
 const bookingModal = document.getElementById('booking-modal');
 const closeModalBtn = document.getElementById('close-modal');
 const bookingForm = document.getElementById('booking-form');
-const roomCards = document.querySelectorAll('.room-card');
 
-// 1. Open Modal on Card Click
-roomCards.forEach(card => {
-    // We target the overlay specifically so normal text selection isn't blocked 
-    // if you didn't have the overlay. But with overlay, clicking anywhere works.
-    const overlay = card.querySelector('.card-overlay');
-    
-    if(overlay) {
-        overlay.addEventListener('click', () => {
-            const roomName = card.getAttribute('data-room');
-            
-            // Populate Modal
-            document.getElementById('modal-room-name').textContent = roomName;
-            document.getElementById('hidden-room-name').value = roomName;
-            
-            // Show Modal
-            bookingModal.classList.remove('hidden');
-        });
-    }
+// 1. Open Modal on Book button click (works on touch and keyboard)
+document.querySelectorAll('.btn-book').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const card = btn.closest('.room-card');
+        const roomName = card.getAttribute('data-room');
+
+        document.getElementById('modal-room-name').textContent = roomName;
+        document.getElementById('hidden-room-name').value = roomName;
+
+        bookingModal.classList.remove('hidden');
+    });
 });
 
 // 2. Close Modal
@@ -318,7 +310,33 @@ if(bookingModal) {
     });
 }
 
-// 3. Submit Booking
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && bookingModal && !bookingModal.classList.contains('hidden')) {
+        bookingModal.classList.add('hidden');
+    }
+});
+
+// 3. Apply room visibility from rooms-config.js
+if (typeof ACTIVE_ROOMS !== 'undefined') {
+    document.querySelectorAll('.room-card').forEach(card => {
+        if (!ACTIVE_ROOMS.includes(card.dataset.room)) {
+            card.style.display = 'none';
+            card.classList.add('room-hidden');
+        }
+    });
+
+    // Hide sections where every room card is inactive
+    document.querySelectorAll('[id^="section-"]').forEach(section => {
+        const allCards = section.querySelectorAll('.room-card');
+        const hiddenCards = section.querySelectorAll('.room-hidden');
+        if (allCards.length > 0 && allCards.length === hiddenCards.length) {
+            section.style.display = 'none';
+        }
+    });
+}
+
+// 4. Submit Booking
 if(bookingForm) {
     bookingForm.addEventListener('submit', e => {
         e.preventDefault();
@@ -341,14 +359,14 @@ if(bookingForm) {
             mode: 'no-cors'
         })
         .then(() => {
-            alert("Request Sent! We will contact you shortly. / ¡Solicitud Enviada!");
+            alert("Request submitted! We will follow up to confirm availability. / ¡Solicitud enviada! Te contactaremos para confirmar disponibilidad.");
             bookingModal.classList.add('hidden');
             bookingForm.reset();
             btn.innerText = originalText;
             btn.disabled = false;
         })
         .catch(error => {
-            alert("Error sending request.");
+            alert("Something went wrong. Please email amador.mesa.miller@gmail.com to request a room. / Algo salió mal. Por favor escríbenos a amador.mesa.miller@gmail.com para solicitar una habitación.");
             btn.innerText = originalText;
             btn.disabled = false;
         });
