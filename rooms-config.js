@@ -4,12 +4,12 @@
 // To disable a room: comment it out or remove it from the list.
 
 const ACTIVE_ROOMS = [
-    'Saratoga',
-    'Emerald Lake',
+    // 'Saratoga',
+    // 'Emerald Lake',
     'Hill Farm Suite',
     // 'Landgrove',
-    'Grafton',
-    'Farm House Cottage',
+    // 'Grafton',
+    // 'Farm House Cottage',
     // 'Battenkill',
     // 'Equinox',
     // 'Wilcox',
